@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Test1.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Test1.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Test</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">By</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">WebDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">edge</span><span class="s2">.</span><span class="s1">EdgeDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">annotations</span><span class="s2">.</span><span class="s1">Test</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertTrue</span><span class="s2">;</span>
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">AssertJUnit</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Test1 </span><span class="s2">{</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">HappyPath</span><span class="s2">() {</span>
+        <span class="s1">WebDriver driver </span><span class="s2">= </span><span class="s0">new </span><span class="s1">EdgeDriver</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">manage</span><span class="s2">().</span><span class="s1">window</span><span class="s2">().</span><span class="s1">maximize</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://the-internet.herokuapp.com/&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">linkText</span><span class="s2">(</span><span class="s3">&quot;Form Authentication&quot;</span><span class="s2">)).</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s3">&quot;username&quot;</span><span class="s2">)).</span><span class="s1">sendKeys</span><span class="s2">(</span><span class="s3">&quot;tomsmith&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">name</span><span class="s2">(</span><span class="s3">&quot;password&quot;</span><span class="s2">)).</span><span class="s1">sendKeys</span><span class="s2">(</span><span class="s3">&quot;SuperSecretPassword!&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">className</span><span class="s2">(</span><span class="s3">&quot;radius&quot;</span><span class="s2">)).</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s1">String actualResult </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s3">&quot;flash&quot;</span><span class="s2">)).</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String expectedResult </span><span class="s2">= </span><span class="s3">&quot;You logged into a secure area!&quot;</span><span class="s2">;</span>
+        <span class="s1">assertTrue</span><span class="s2">(</span><span class="s1">actualResult</span><span class="s2">.</span><span class="s1">contains</span><span class="s2">(</span><span class="s1">expectedResult</span><span class="s2">));</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">xpath</span><span class="s2">(</span><span class="s3">&quot;/html/body/div[2]/div/div/a&quot;</span><span class="s2">)).</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+    <span class="s2">}</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">NegativeUsername</span><span class="s2">(){</span>
+        <span class="s1">WebDriver driver </span><span class="s2">= </span><span class="s0">new </span><span class="s1">EdgeDriver</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">manage</span><span class="s2">().</span><span class="s1">window</span><span class="s2">().</span><span class="s1">maximize</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://the-internet.herokuapp.com/&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">linkText</span><span class="s2">(</span><span class="s3">&quot;Form Authentication&quot;</span><span class="s2">)).</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s3">&quot;username&quot;</span><span class="s2">)).</span><span class="s1">sendKeys</span><span class="s2">(</span><span class="s3">&quot;Anas&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">name</span><span class="s2">(</span><span class="s3">&quot;password&quot;</span><span class="s2">)).</span><span class="s1">sendKeys</span><span class="s2">(</span><span class="s3">&quot;SuperSecretPassword!&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">className</span><span class="s2">(</span><span class="s3">&quot;radius&quot;</span><span class="s2">)).</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s1">String actualResult </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s3">&quot;flash&quot;</span><span class="s2">)).</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String expectedResult </span><span class="s2">= </span><span class="s3">&quot;Your username is invalid!&quot;</span><span class="s2">;</span>
+        <span class="s1">assertTrue</span><span class="s2">(</span><span class="s1">actualResult</span><span class="s2">.</span><span class="s1">contains</span><span class="s2">(</span><span class="s1">expectedResult</span><span class="s2">));</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+    <span class="s2">}</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">NegativePassword</span><span class="s2">(){</span>
+        <span class="s1">WebDriver driver </span><span class="s2">= </span><span class="s0">new </span><span class="s1">EdgeDriver</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">manage</span><span class="s2">().</span><span class="s1">window</span><span class="s2">().</span><span class="s1">maximize</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://the-internet.herokuapp.com/&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">linkText</span><span class="s2">(</span><span class="s3">&quot;Form Authentication&quot;</span><span class="s2">)).</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s3">&quot;username&quot;</span><span class="s2">)).</span><span class="s1">sendKeys</span><span class="s2">(</span><span class="s3">&quot;tomsmith&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">name</span><span class="s2">(</span><span class="s3">&quot;password&quot;</span><span class="s2">)).</span><span class="s1">sendKeys</span><span class="s2">(</span><span class="s3">&quot;SuperSecretPassword&quot;</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">className</span><span class="s2">(</span><span class="s3">&quot;radius&quot;</span><span class="s2">)).</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s1">String actualResult </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s3">&quot;flash&quot;</span><span class="s2">)).</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String expectedResult </span><span class="s2">= </span><span class="s3">&quot;Your password is invalid!&quot;</span><span class="s2">;</span>
+        <span class="s1">assertTrue</span><span class="s2">(</span><span class="s1">actualResult</span><span class="s2">.</span><span class="s1">contains</span><span class="s2">(</span><span class="s1">expectedResult</span><span class="s2">));</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
